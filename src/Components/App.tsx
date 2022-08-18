@@ -29,7 +29,6 @@ const App = () => {
   }, []);
 
   const navBarItems = () =>
-    categories.length &&
     categories.map((item, index, array) => {
       const includeRedText = index === array.length - 1;
 

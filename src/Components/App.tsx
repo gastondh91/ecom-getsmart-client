@@ -1,6 +1,7 @@
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import SearchIcon from "@mui/icons-material/Search";
-import { useId, useState } from "react";
+import { useEffect, useId, useState } from "react";
+import axios from "axios";
 
 const App = () => {
   const [cartCount, setCartCount] = useState(() => {
@@ -10,25 +11,28 @@ const App = () => {
     return 0;
   });
 
-  const FAKE_CATEGORIES = [
-    "WOMEN",
-    "MEN",
-    "ACCESSORIES",
-    "MIRROR",
-    "SHOES",
-    "LIKE NEW",
-  ];
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const getCategories = async () => {
+      const { data: response } = await axios.get("http://127.0.0.1:3333/api");
+      setCategories(response);
+    };
+
+    getCategories();
+  }, []);
 
   const navBarItems = () =>
-    FAKE_CATEGORIES.map((item, index, array) => {
+    categories.length &&
+    categories.map((item, index, array) => {
       const includeRedText = index === array.length - 1;
 
       return (
         <li
-          key={useId()}
+          key={(item as any)._id}
           className={`px-4 py-1 w-50 ${includeRedText ? "text-red-600" : ""}`}
         >
-          {item}
+          {(item as any).name}
         </li>
       );
     });

@@ -17,7 +17,7 @@ const App = () => {
     const getCategories = async () => {
       try {
         const { data: response } = await axios.get(
-          "https://54.166.118.42:443/api"
+          "http://54.166.118.42:80/api"
         );
         setCategories(response);
       } catch (error) {

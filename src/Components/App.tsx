@@ -1,6 +1,6 @@
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import SearchIcon from "@mui/icons-material/Search";
-import { useEffect, useId, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 const App = () => {
@@ -15,8 +15,14 @@ const App = () => {
 
   useEffect(() => {
     const getCategories = async () => {
-      const { data: response } = await axios.get("http://127.0.0.1:3333/api");
-      setCategories(response);
+      try {
+        const { data: response } = await axios.get(
+          "https://54.166.118.42:443/api"
+        );
+        setCategories(response);
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     getCategories();

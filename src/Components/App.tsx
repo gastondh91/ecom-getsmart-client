@@ -68,7 +68,7 @@ const App = () => {
                 />
                 <input
                   placeholder="Search"
-                  className="border-solid border-[#363336] border-[1px] h-10 px-6 rounded-md placeholder:pl-2.5 text-[1rem]"
+                  className="border-solid border-[#363336] border-[1px] h-10 px-6 rounded-md text-[1rem] indent-3 font-medium"
                   type="search"
                   name=""
                   id=""

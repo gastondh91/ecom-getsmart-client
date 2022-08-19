@@ -2,6 +2,7 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import SearchIcon from "@mui/icons-material/Search";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { NODE_BACKEND_URL } from "../utils";
 
 const App = () => {
   const [cartCount, setCartCount] = useState(() => {
@@ -16,7 +17,7 @@ const App = () => {
   useEffect(() => {
     const getCategories = async () => {
       try {
-        const { data: response } = await axios.get("http://54.166.228.14/api");
+        const { data: response } = await axios.get(NODE_BACKEND_URL);
         setCategories(response);
       } catch (error) {
         console.log(error);

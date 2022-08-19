@@ -16,9 +16,7 @@ const App = () => {
   useEffect(() => {
     const getCategories = async () => {
       try {
-        const { data: response } = await axios.get(
-          "http://54.205.224.106/api"
-        );
+        const { data: response } = await axios.get("http://54.166.228.14/api");
         setCategories(response);
       } catch (error) {
         console.log(error);

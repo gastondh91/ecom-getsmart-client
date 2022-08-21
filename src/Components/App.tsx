@@ -12,8 +12,6 @@ const App = () => {
     return 0;
   });
 
-  console.log(import.meta.env);
-
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {

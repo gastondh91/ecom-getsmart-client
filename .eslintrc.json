@@ -30,6 +30,7 @@
         "maximum": 2
       }
     ],
+    "prettier/prettier": "warn",
     "react/react-in-jsx-scope": "off",
     "camelcase": "error",
     "spaced-comment": "error",

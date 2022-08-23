@@ -8,8 +8,6 @@ const App = () => {
   const [cartCount, setCartCount] = useState(() => {
     const sessionStorageCartCount = sessionStorage.getItem('cartCount')
 
-    console.log(import.meta.env)
-
     if (sessionStorageCartCount) return parseInt(sessionStorageCartCount, 10)
     return 0
   })

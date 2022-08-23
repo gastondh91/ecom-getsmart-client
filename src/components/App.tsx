@@ -8,6 +8,8 @@ const App = () => {
   const [cartCount, setCartCount] = useState(() => {
     const sessionStorageCartCount = sessionStorage.getItem('cartCount')
 
+    console.log(import.meta.env)
+
     if (sessionStorageCartCount) return parseInt(sessionStorageCartCount, 10)
     return 0
   })
@@ -19,16 +21,16 @@ const App = () => {
 
   const [categories, setCategories] = useState([])
 
-  useEffect(() => {
-    const getCategories = async () => {
-      try {
-        const { data: response } = await axios.get(NODE_BACKEND_URL)
-        setCategories(response)
-      } catch (error) {
-        console.log(error)
-      }
+  const getCategories = async () => {
+    try {
+      const { data: response } = await axios.get(NODE_BACKEND_URL)
+      setCategories(response)
+    } catch (error) {
+      console.log(error)
     }
+  }
 
+  useEffect(() => {
     getCategories()
   }, [])
 

@@ -1,40 +1,40 @@
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import SearchIcon from '@mui/icons-material/Search';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { NODE_BACKEND_URL } from '../utils';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
+import SearchIcon from '@mui/icons-material/Search'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
+import { NODE_BACKEND_URL } from '../utils'
 
 const App = () => {
   const [cartCount, setCartCount] = useState(() => {
-    const sessionStorageCartCount = sessionStorage.getItem('cartCount');
+    const sessionStorageCartCount = sessionStorage.getItem('cartCount')
 
-    if (sessionStorageCartCount) return parseInt(sessionStorageCartCount, 10);
-    return 0;
-  });
+    if (sessionStorageCartCount) return parseInt(sessionStorageCartCount, 10)
+    return 0
+  })
 
-  interface categories {
+  interface ICategories {
     _id: string
     name: string
   }
 
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState([])
 
   useEffect(() => {
     const getCategories = async () => {
       try {
-        const { data: response } = await axios.get(NODE_BACKEND_URL);
-        setCategories(response);
+        const { data: response } = await axios.get(NODE_BACKEND_URL)
+        setCategories(response)
       } catch (error) {
-        console.log(error);
+        console.log(error)
       }
-    };
+    }
 
-    getCategories();
-  }, []);
+    getCategories()
+  }, [])
 
   const navBarItems = () =>
-    categories.map((item: categories, index, array) => {
-      const includeRedText = index === array.length - 1;
+    categories.map((item: ICategories, index, array) => {
+      const includeRedText = index === array.length - 1
 
       return (
         <li
@@ -43,17 +43,17 @@ const App = () => {
         >
           {item.name}
         </li>
-      );
-    });
+      )
+    })
 
   const handleAddToCart = () => {
-    const newCartCount = cartCount + 1;
+    const newCartCount = cartCount + 1
 
-    setCartCount(newCartCount);
-    sessionStorage.setItem('cartCount', newCartCount.toString());
-  };
+    setCartCount(newCartCount)
+    sessionStorage.setItem('cartCount', newCartCount.toString())
+  }
 
-  const hasCartMoreThanTenItems = cartCount >= 10;
+  const hasCartMoreThanTenItems = cartCount >= 10
 
   return (
     <div>
@@ -99,7 +99,7 @@ const App = () => {
         </div>
       </nav>
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App

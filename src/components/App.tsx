@@ -65,7 +65,7 @@ const App = () => {
           <ul className='flex space-x-2 mr-20 min-w-max'>{navBarItems()}</ul>
           <div className='flex basis-full justify-end items-center'>
             <div className='flex items-center'>
-              <form action=''>
+              <form onSubmit={e => e.preventDefault()}>
                 <SearchIcon
                   fontSize='small'
                   className='absolute top-[1.90rem] ml-2.5'

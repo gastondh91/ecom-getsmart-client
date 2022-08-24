@@ -60,7 +60,7 @@ const App = () => {
       <nav className='flex px-7 mx-14 font-semibold uppercase leading-5 tracking-wider'>
         <div className='basis-full flex items-center h-20'>
           <div className='basis-32 shrink-0 mr-6'>
-            <img src='images/logo.jpg' alt='Logo' />
+            <img src='images/logo.png' alt='Logo' />
           </div>
           <ul className='flex space-x-2 mr-20 min-w-max'>{navBarItems()}</ul>
           <div className='flex basis-full justify-end items-center'>

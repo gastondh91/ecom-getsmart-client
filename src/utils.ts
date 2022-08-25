@@ -1,8 +1,13 @@
-const developmentMode = import.meta.env.VITE_MODE === 'development'
+const { VITE_MODE, VITE_LOCAL_NODE_BACKEND_URL, VITE_PROD_NODE_BACKEND_URL } =
+  import.meta.env
 
-const LOCAL_NODE_BACKEND_URL = 'http://127.0.0.1:3000/api'
-const PROD_NODE_BACKEND_URL = 'http://getsmart.ar/api'
+const developmentMode = VITE_MODE === 'development'
+
+const backendNodeUrls = {
+  DEVELOPMENT: VITE_LOCAL_NODE_BACKEND_URL,
+  PRODUCTION: VITE_PROD_NODE_BACKEND_URL
+}
 
 export const NODE_BACKEND_URL = developmentMode
-  ? LOCAL_NODE_BACKEND_URL
-  : PROD_NODE_BACKEND_URL
+  ? backendNodeUrls.DEVELOPMENT
+  : backendNodeUrls.PRODUCTION

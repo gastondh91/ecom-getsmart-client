@@ -1,6 +1,6 @@
 {
-  "name": "getsmart-client",
-  "private": true,
+  "name": "ecom-getsmart-client",
+  "author": "Gaston d'Hiriart <gastondh91@gmail.com>",
   "version": "1.0.0",
   "type": "module",
   "scripts": {

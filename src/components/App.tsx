@@ -1,8 +1,8 @@
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
 import SearchIcon from '@mui/icons-material/Search'
 import { useEffect, useState } from 'react'
-import axios from 'axios'
-import { NODE_BACKEND_URL } from '../utils'
+import { getCategories } from '../api/services/categories.service'
+import { ICategories } from '../utils/interfaces'
 
 const App = () => {
   const [cartCount, setCartCount] = useState(() => {
@@ -11,34 +11,29 @@ const App = () => {
     if (sessionStorageCartCount) return parseInt(sessionStorageCartCount, 10)
     return 0
   })
+  const [categories, setCategories] = useState<ICategories[]>([])
 
-  interface ICategories {
-    _id: string
-    name: string
-  }
-
-  const [categories, setCategories] = useState([])
-
-  const getCategories = async () => {
+  const fetchData = async () => {
     try {
-      const { data: response } = await axios.get(NODE_BACKEND_URL)
-      setCategories(response)
+      const fetchedCategories = await getCategories()
+      setCategories(fetchedCategories)
     } catch (error) {
-      console.log(error)
+      console.error(error)
+      throw error
     }
   }
 
   useEffect(() => {
-    getCategories()
+    fetchData()
   }, [])
 
   const navBarItems = () =>
-    categories.map((item: ICategories, index, array) => {
+    categories.map((item: any, index, array) => {
       const includeRedText = index === array.length - 1
 
       return (
         <li
-          key={item._id}
+          key={item.id}
           className={`px-4 py-1 w-50 ${includeRedText ? 'text-red-600' : ''}`}
         >
           {item.name}
@@ -78,11 +73,9 @@ const App = () => {
                   id=''
                 />
               </form>
-              <div
-                onClick={() => handleAddToCart()}
-                className='flex items-center pr-7 hover:cursor-pointer'
-              >
+              <div className='flex items-center pr-7 hover:cursor-pointer'>
                 <ShoppingCartOutlinedIcon
+                  onClick={() => handleAddToCart()}
                   fontSize={'large'}
                   className='ml-5 text-sm'
                 />

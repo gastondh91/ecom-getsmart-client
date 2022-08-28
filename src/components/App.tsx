@@ -60,7 +60,7 @@ const App = () => {
           <ul className='flex space-x-2 mr-20 min-w-max'>{navBarItems()}</ul>
           <div className='flex basis-full justify-end items-center'>
             <div className='flex items-center'>
-              <form onSubmit={e => e.preventDefault()}>
+              <form className='px-5' onSubmit={e => e.preventDefault()}>
                 <SearchIcon
                   fontSize='small'
                   className='absolute top-[1.90rem] ml-2.5'
@@ -73,11 +73,13 @@ const App = () => {
                   id=''
                 />
               </form>
-              <div className='flex items-center pr-7 hover:cursor-pointer'>
+              <div
+                onClick={() => handleAddToCart()}
+                className='flex items-center pr-7 hover:cursor-pointer'
+              >
                 <ShoppingCartOutlinedIcon
-                  onClick={() => handleAddToCart()}
                   fontSize={'large'}
-                  className='ml-5 text-sm'
+                  className='text-sm'
                 />
                 <span
                   className={`text-xs rounded-md ${

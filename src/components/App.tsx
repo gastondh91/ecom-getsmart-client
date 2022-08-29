@@ -2,16 +2,16 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
 import SearchIcon from '@mui/icons-material/Search'
 import { useEffect, useState } from 'react'
 import { getCategories } from '../api/services/categories.service'
-import { ICategories } from '../utils/interfaces'
+import { ICategory } from '../utils/interfaces'
 
 const App = () => {
-  const [cartCount, setCartCount] = useState(() => {
+  const [cartCount, setCartCount] = useState<number>(() => {
     const sessionStorageCartCount = sessionStorage.getItem('cartCount')
 
     if (sessionStorageCartCount) return parseInt(sessionStorageCartCount, 10)
     return 0
   })
-  const [categories, setCategories] = useState<ICategories[]>([])
+  const [categories, setCategories] = useState<ICategory[]>([])
 
   const fetchData = async () => {
     try {
@@ -28,13 +28,15 @@ const App = () => {
   }, [])
 
   const navBarItems = () =>
-    categories.map((item: any, index, array) => {
+    categories.map((item, index, array) => {
       const includeRedText = index === array.length - 1
 
       return (
         <li
           key={item.id}
-          className={`px-4 py-1 w-50 ${includeRedText ? 'text-red-600' : ''}`}
+          className={`px-4 py-1 w-50 cursor-pointer ${
+            includeRedText ? 'text-red-600' : ''
+          }`}
         >
           {item.name}
         </li>
@@ -54,7 +56,7 @@ const App = () => {
     <div>
       <nav className='flex px-7 mx-14 font-semibold uppercase leading-5 tracking-wider'>
         <div className='basis-full flex items-center h-20'>
-          <div className='basis-32 shrink-0 mr-6'>
+          <div className='basis-32 shrink-0 mr-6 cursor-pointer'>
             <img src='images/logo.png' alt='Logo' />
           </div>
           <ul className='flex space-x-2 mr-20 min-w-max'>{navBarItems()}</ul>

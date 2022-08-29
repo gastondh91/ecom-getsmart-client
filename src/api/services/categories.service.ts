@@ -1,6 +1,6 @@
 import { LIST_CATEGORIES_QUERY } from '../../utils/queries'
 import axios from 'axios'
-import { ICategories } from '../../utils/interfaces'
+import { ICategory } from '../../utils/interfaces'
 import { GRAPHQL_URL } from '../../utils/environments'
 
 interface IResponse {
@@ -8,11 +8,11 @@ interface IResponse {
 }
 
 interface IData {
-  data: { categories: ICategories[] }
+  data: { categories: ICategory[] }
   errors?: Error[]
 }
 
-export const getCategories = async (): Promise<ICategories[]> => {
+export const getCategories = async (): Promise<ICategory[]> => {
   const { data: response }: IResponse = await axios({
     url: GRAPHQL_URL,
     method: 'POST',
